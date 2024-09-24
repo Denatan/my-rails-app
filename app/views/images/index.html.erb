@@ -1,0 +1,11 @@
+<h1>Изображения</h1>
+
+<%= link_to 'Загрузить новое изображение', new_image_path %>
+
+<div class="image-gallery">
+  <% @images.each do |image| %>
+    <div class="image-item">
+      <%= image_tag image.picture %>
+    </div>
+  <% end %>
+</div>

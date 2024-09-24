@@ -1,0 +1,12 @@
+<h1>Загрузить новое изображение</h1>
+
+<%= form_with(model: @image, local: true) do |form| %>
+  <div>
+    <%= form.label :picture, "Выберите изображение" %>
+    <%= form.file_field :picture %>
+  </div>
+
+  <div>
+    <%= form.submit "Загрузить" %>
+  </div>
+<% end %>

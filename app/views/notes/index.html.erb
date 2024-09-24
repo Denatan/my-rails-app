@@ -1,0 +1,54 @@
+<h1>Заметки</h1>
+<%= link_to 'Создать новую заметку', new_note_path %>
+
+<div class="note-slider">
+  <% if @notes.present? %>
+    <% @notes.each do |note| %>
+      <div class="note">
+        <h2><%= note.title %></h2>
+        <p><%= note.content %></p>
+        <%= link_to 'Редактировать', edit_note_path(note) %> |
+        <%= link_to 'Удалить', note_path(note), method: :delete, data: { confirm: 'Вы уверены?' } %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Нет доступных заметок.</p>
+  <% end %>
+</div>
+
+<h1>Галерея изображений</h1>
+
+<%= form_with model: @image, local: true do |form| %>
+  <div>
+    <%= form.label :picture %>
+    <%= form.file_field :picture %>
+  </div>
+  <div>
+    <%= form.submit "Загрузить" %>
+  </div>
+<% end %>
+
+<div class="image-gallery">
+  <!-- Проверьте, что @images инициализированы в контроллере -->
+  <div class="image-row">
+    <% if @images.present? %>
+      <% @images.each do |image| %>
+        <div class="image-item">
+          <%= image_tag image.picture %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Нет доступных изображений.</p>
+    <% end %>
+  </div>
+
+  <div class="image-slider">
+    <% if @images.present? %>
+      <% @images.each do |image| %>
+        <div class="slide">
+          <%= image_tag image.picture %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notes App</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<header class="header">
+  <h1>Notes Application</h1>
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Create Note', new_note_path %></li>
+      <li><%= link_to 'Images', images_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Sign In', new_user_session_path %></li>
+      <% end %>
+      <li><%= link_to 'About', about_path %></li>
+      <li><%= link_to 'Contacts', contacts_path %></li>
+      <li><%= link_to 'FAQ', faq_path %></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="content">
+  <%= yield %>
+</div>
+
+<footer class="footer">
+  <nav>
+    <ul>
+      <li><%= link_to 'About', about_path %></li>
+      <li><%= link_to 'Contacts', contacts_path %></li>
+      <li><%= link_to 'FAQ', faq_path %></li>
+    </ul>
+  </nav>
+  <p>&copy; 2023 Notes App. All rights reserved.</p>
+</footer>
+</body>
+</html>
